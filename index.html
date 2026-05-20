@@ -759,7 +759,7 @@ function executeBuy(id, dropPercentage) {
   });
   
   save(); render();
-  toast(`${dropPercentage}% 추가 매수 ${qty}주 체결 (${sellPrice}원에 매도)`);
+  toast(`${dropPercentage}% 추가 매수 ${qty}주 체결`);
 }
 
 function toggleSellDone(id, scheduleId) {
@@ -778,6 +778,40 @@ function toggleCollapse(id) {
     collapsedCards.push(id);
   }
   save(); render();
+}
+
+// 평균단가와 총 누적 투자금액 계산
+function calculateStats(s) {
+  // 첫진입 투자금액
+  const initialInvest = s.entryPrice * s.entryQty;
+  
+  // 추가매수 총투자금액
+  const additionalInvest = s.executedSchedule.reduce((sum, r) => sum + (r.buyPrice * r.qty), 0);
+  
+  // 총 투자금액
+  const totalInvest = initialInvest + additionalInvest;
+  
+  // 총 누적 수량
+  const totalQty = s.entryQty + s.executedSchedule.reduce((sum, r) => sum + r.qty, 0);
+  
+  // 평균단가
+  const avgPrice = totalQty > 0 ? totalInvest / totalQty : 0;
+  
+  // 매도 완료된 수량
+  const soldQty = s.executedSchedule.filter(r => r.sellDone).reduce((sum, r) => sum + r.qty, 0);
+  
+  // 보유 수량
+  const holdingQty = totalQty - soldQty;
+  
+  return {
+    totalInvest,
+    totalQty,
+    avgPrice,
+    soldQty,
+    holdingQty,
+    initialInvest,
+    additionalInvest
+  };
 }
 
 function render() {
@@ -800,9 +834,11 @@ function renderCard(s, num) {
   const maxBuyAmount = dropPercent > 0 ? dropPercent * 10000 : 0;
   
   // 이미 체결된 추가 매수들
-  const executedTotal = s.executedSchedule.reduce((a, x) => a + x.buyAmount, 0);
+  const executedTotal = s.executedSchedule.reduce((a, x) => a + (x.buyPrice * x.qty), 0);
   const executedQty = s.executedSchedule.reduce((a, x) => a + x.qty, 0);
-  const soldQty = s.executedSchedule.filter(x => x.sellDone).reduce((a, x) => a + x.qty, 0);
+  
+  // 통계 계산
+  const stats = calculateStats(s);
   
   const collapsed = collapsedCards.includes(s.id);
 
@@ -822,7 +858,7 @@ function renderCard(s, num) {
 
   // 현재가 입력 후 동적 스케줄 생성
   if (cur && dropPercent > 0) {
-    const buyBudget = maxBuyAmount - executedTotal;
+    const buyBudget = maxBuyAmount - (s.executedSchedule.reduce((a, x) => a + (x.buyPrice * x.qty), 0) - s.entryPrice * s.entryQty);
     const buyQtyAvailable = cur > 0 ? Math.max(1, Math.round(buyBudget / cur)) : 0;
     
     mainContent = `
@@ -861,7 +897,7 @@ function renderCard(s, num) {
                   <td style="color:var(--text-muted)">-${r.dropPercent}%</td>
                   <td style="color:var(--accent-sell)">₩${fmt(r.buyPrice)}</td>
                   <td>${r.qty}주</td>
-                  <td>₩${fmt(r.buyAmount)}</td>
+                  <td>₩${fmt(r.buyPrice * r.qty)}</td>
                   <td style="color:var(--accent-buy)">₩${fmt(r.sellPrice)}</td>
                   <td>
                     <div class="action-btns">
@@ -919,25 +955,29 @@ function renderCard(s, num) {
 
     <div class="card-summary">
       <div class="sum-item">
-        <span class="sum-label">첫진입</span>
-        <span class="sum-val v-buy">${s.entryQty}주</span>
+        <span class="sum-label">평균단가</span>
+        <span class="sum-val v-buy">₩${fmt(stats.avgPrice)}</span>
       </div>
       <div class="sum-item">
-        <span class="sum-label">추가매수</span>
-        <span class="sum-val v-neu">${executedQty}주</span>
+        <span class="sum-label">총 수량</span>
+        <span class="sum-val v-neu">${stats.totalQty}주</span>
+      </div>
+      <div class="sum-item">
+        <span class="sum-label">총 투입금액</span>
+        <span class="sum-val v-neu">₩${fmt(stats.totalInvest)}</span>
       </div>
       <div class="sum-item">
         <span class="sum-label">보유</span>
-        <span class="sum-val v-neu">${s.entryQty + executedQty}주</span>
+        <span class="sum-val v-neu">${stats.holdingQty}주</span>
       </div>
       <div class="sum-item">
         <span class="sum-label">매도완료</span>
-        <span class="sum-val v-sell">${soldQty}주</span>
+        <span class="sum-val v-sell">${stats.soldQty}주</span>
       </div>
-      ${cur && (s.entryQty + executedQty) > 0 ? `
+      ${cur && stats.totalQty > 0 ? `
       <div class="sum-item">
         <span class="sum-label">평가금액</span>
-        <span class="sum-val" style="color:${cur * (s.entryQty + executedQty) >= (s.entryPrice * s.entryQty + executedTotal) ? 'var(--accent-buy)' : 'var(--accent-sell)'}">₩${fmt(cur * (s.entryQty + executedQty))}</span>
+        <span class="sum-val" style="color:${cur * stats.totalQty >= stats.totalInvest ? 'var(--accent-buy)' : 'var(--accent-sell)'}">₩${fmt(cur * stats.totalQty)}</span>
       </div>` : ''}
     </div>
   `;
