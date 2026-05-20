@@ -55,7 +55,7 @@
   header {
     background: #0d1220;
     border-bottom: 1px solid var(--border);
-    padding: 14px 16px 12px;
+    padding: 16px 20px 14px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -65,26 +65,26 @@
   .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
   }
 
   .logo-icon {
-    width: 48px; height: 48px;
+    width: 54px; height: 54px;
     background: linear-gradient(135deg, var(--accent-buy), #00b37d);
-    border-radius: 10px;
+    border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 28px;
+    font-size: 32px;
   }
 
-  .logo h1 { font-size: 26px; font-weight: 700; }
+  .logo h1 { font-size: 32px; font-weight: 700; }
   .logo span { color: var(--accent-buy); }
 
   .hdr-badge {
     background: var(--surface2);
     border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 6px 16px;
-    font-size: 20px;
+    border-radius: 24px;
+    padding: 8px 20px;
+    font-size: 24px;
     color: var(--text-muted);
   }
 
@@ -95,40 +95,40 @@
     flex: 1;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    padding-bottom: calc(70px + var(--safe-bottom));
+    padding-bottom: calc(80px + var(--safe-bottom));
   }
 
   /* 종목 추가 폼 */
   .add-panel {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
-    padding: 14px 16px;
+    padding: 18px 20px;
   }
 
   .add-panel-title {
-    font-size: 22px;
+    font-size: 28px;
     color: var(--text-muted);
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
     font-weight: 600;
   }
 
   .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    margin-bottom: 8px;
+    gap: 10px;
+    margin-bottom: 10px;
   }
 
   .form-group {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
   }
 
   .form-label {
-    font-size: 20px;
+    font-size: 24px;
     color: var(--text-muted);
     font-weight: 500;
   }
@@ -136,10 +136,10 @@
   .form-input {
     background: var(--bg);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 14px 16px;
+    border-radius: 10px;
+    padding: 16px 18px;
     color: var(--text);
-    font-size: 26px;
+    font-size: 28px;
     font-family: 'Noto Sans KR', sans-serif;
     outline: none;
     width: 100%;
@@ -151,12 +151,12 @@
 
   .btn-add-full {
     width: 100%;
-    padding: 16px;
+    padding: 18px;
     background: var(--accent-buy);
     color: #000;
     border: none;
-    border-radius: 12px;
-    font-size: 26px;
+    border-radius: 14px;
+    font-size: 28px;
     font-weight: 700;
     font-family: 'Noto Sans KR', sans-serif;
     cursor: pointer;
@@ -172,34 +172,34 @@
 
   /* 종목 리스트 */
   .stocks-list {
-    padding: 12px 16px;
+    padding: 14px 20px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
   }
 
   /* 빈 상태 */
   .empty-state {
     text-align: center;
-    padding: 60px 20px;
+    padding: 80px 24px;
   }
 
-  .empty-icon { font-size: 80px; margin-bottom: 16px; opacity: 0.4; }
-  .empty-title { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
-  .empty-desc { font-size: 22px; color: var(--text-muted); line-height: 1.6; }
+  .empty-icon { font-size: 100px; margin-bottom: 20px; opacity: 0.4; }
+  .empty-title { font-size: 32px; font-weight: 700; margin-bottom: 10px; }
+  .empty-desc { font-size: 26px; color: var(--text-muted); line-height: 1.7; }
 
   /* 종목 카드 */
   .stock-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 14px;
+    border-radius: 16px;
     overflow: hidden;
   }
 
   /* 카드 헤더 */
   .card-head {
     background: var(--surface2);
-    padding: 12px 14px;
+    padding: 14px 16px;
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
@@ -209,30 +209,30 @@
   .card-title-row {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
 
   .stock-num {
-    width: 36px; height: 36px;
+    width: 44px; height: 44px;
     background: var(--accent-blue);
     color: #fff;
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    font-size: 18px; font-weight: 700;
+    font-size: 22px; font-weight: 700;
   }
 
-  .stock-name { font-size: 26px; font-weight: 700; }
+  .stock-name { font-size: 30px; font-weight: 700; }
 
   .card-head-right {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 4px;
+    gap: 6px;
   }
 
   .entry-info {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 20px;
+    font-size: 24px;
     color: var(--text-muted);
   }
 
@@ -240,9 +240,9 @@
     background: transparent;
     border: 1px solid var(--accent-sell);
     color: var(--accent-sell);
-    border-radius: 8px;
-    padding: 6px 14px;
-    font-size: 20px;
+    border-radius: 10px;
+    padding: 8px 16px;
+    font-size: 22px;
     font-family: 'Noto Sans KR', sans-serif;
     cursor: pointer;
   }
@@ -251,16 +251,16 @@
 
   /* 현재가 업데이트 바 */
   .price-bar {
-    padding: 10px 14px;
+    padding: 12px 16px;
     background: #0d1420;
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
 
   .price-bar-label {
-    font-size: 20px;
+    font-size: 24px;
     color: var(--text-muted);
     white-space: nowrap;
     flex-shrink: 0;
@@ -270,10 +270,10 @@
     flex: 1;
     background: var(--bg);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 10px 14px;
+    border-radius: 10px;
+    padding: 12px 16px;
     color: var(--text);
-    font-size: 24px;
+    font-size: 28px;
     font-family: 'JetBrains Mono', monospace;
     outline: none;
     min-width: 0;
@@ -286,9 +286,9 @@
     background: var(--accent-blue);
     color: #fff;
     border: none;
-    border-radius: 8px;
-    padding: 10px 16px;
-    font-size: 20px;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 22px;
     font-weight: 700;
     font-family: 'Noto Sans KR', sans-serif;
     cursor: pointer;
@@ -299,9 +299,35 @@
 
   .cur-price-chip {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 20px;
+    font-size: 24px;
     color: var(--accent-blue);
     white-space: nowrap;
+  }
+
+  /* 동적 스케줄 안내 */
+  .dynamic-schedule-info {
+    padding: 14px 16px;
+    background: rgba(0, 229, 160, 0.08);
+    border-bottom: 1px solid var(--border);
+    border-left: 3px solid var(--accent-buy);
+  }
+
+  .info-title {
+    font-size: 26px;
+    color: var(--accent-buy);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .info-desc {
+    font-size: 24px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .info-desc strong {
+    color: var(--text);
+    font-weight: 600;
   }
 
   /* 스케줄 테이블 */
@@ -310,18 +336,18 @@
   table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 20px;
+    font-size: 24px;
     font-family: 'JetBrains Mono', monospace;
-    min-width: 700px;
+    min-width: 800px;
   }
 
   thead th {
     background: #0d1420;
     color: var(--text-muted);
-    font-size: 16px;
+    font-size: 18px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    padding: 10px 12px;
+    padding: 12px 14px;
     text-align: right;
     border-bottom: 1px solid var(--border);
     font-family: 'Noto Sans KR', sans-serif;
@@ -331,7 +357,7 @@
   thead th:first-child { text-align: left; }
 
   tbody td {
-    padding: 10px 12px;
+    padding: 12px 14px;
     text-align: right;
     border-bottom: 1px solid #1a2030;
     white-space: nowrap;
@@ -349,9 +375,9 @@
   /* 뱃지 */
   .badge {
     display: inline-flex; align-items: center;
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-size: 16px; font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 18px; font-weight: 700;
     font-family: 'Noto Sans KR', sans-serif;
   }
 
@@ -362,11 +388,11 @@
   .b-alert { background: rgba(0,229,160,0.2); color: var(--accent-buy); border: 1px solid rgba(0,229,160,0.4); }
 
   /* 체결 버튼 */
-  .action-btns { display: flex; gap: 4px; justify-content: flex-end; }
+  .action-btns { display: flex; gap: 6px; justify-content: flex-end; }
 
   .btn-action {
-    border: none; border-radius: 6px;
-    padding: 6px 10px; font-size: 18px; font-weight: 700;
+    border: none; border-radius: 8px;
+    padding: 8px 12px; font-size: 20px; font-weight: 700;
     font-family: 'Noto Sans KR', sans-serif;
     cursor: pointer;
   }
@@ -380,7 +406,7 @@
 
   /* 요약 바 */
   .card-summary {
-    padding: 10px 14px;
+    padding: 12px 16px;
     background: #0a0f1a;
     border-top: 1px solid var(--border);
     display: flex;
@@ -391,16 +417,16 @@
 
   .sum-item {
     flex-shrink: 0;
-    display: flex; flex-direction: column; gap: 2px;
-    padding-right: 16px;
+    display: flex; flex-direction: column; gap: 4px;
+    padding-right: 18px;
     border-right: 1px solid var(--border);
-    margin-right: 16px;
+    margin-right: 18px;
   }
 
   .sum-item:last-child { border-right: none; margin-right: 0; }
 
-  .sum-label { font-size: 16px; color: var(--text-muted); letter-spacing: 0.04em; text-transform: uppercase; }
-  .sum-val { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 700; }
+  .sum-label { font-size: 18px; color: var(--text-muted); letter-spacing: 0.04em; text-transform: uppercase; }
+  .sum-val { font-family: 'JetBrains Mono', monospace; font-size: 26px; font-weight: 700; }
 
   .v-buy { color: var(--accent-buy); }
   .v-sell { color: var(--accent-sell); }
@@ -411,97 +437,113 @@
   .bottom-nav {
     position: fixed;
     bottom: 0; left: 0; right: 0;
-    height: calc(56px + var(--safe-bottom));
+    height: calc(70px + var(--safe-bottom));
     padding-bottom: var(--safe-bottom);
     background: #0d1220;
     border-top: 1px solid var(--border);
     display: flex;
     align-items: flex-start;
     justify-content: space-around;
-    padding-top: 6px;
+    padding-top: 8px;
     z-index: 50;
   }
 
   .nav-btn {
     flex: 1;
-    display: flex; flex-direction: column; align-items: center; gap: 3px;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
     background: none; border: none; cursor: pointer;
     padding: 0;
   }
 
-  .nav-icon { font-size: 32px; }
-  .nav-label { font-size: 18px; font-family: 'Noto Sans KR', sans-serif; color: var(--text-muted); }
+  .nav-icon { font-size: 36px; }
+  .nav-label { font-size: 20px; font-family: 'Noto Sans KR', sans-serif; color: var(--text-muted); }
   .nav-btn.active .nav-label { color: var(--accent-buy); }
   .nav-btn.active .nav-icon { filter: drop-shadow(0 0 4px var(--accent-buy)); }
 
   /* 가이드 패널 */
   .guide-content {
-    padding: 20px;
-    line-height: 1.8;
+    padding: 24px;
+    line-height: 1.9;
     color: var(--text-muted);
-    font-size: 22px;
+    font-size: 26px;
   }
 
-  .guide-section { margin-bottom: 24px; }
-  .guide-section h3 { font-size: 24px; color: var(--text); font-weight: 700; margin-bottom: 12px; }
-  .guide-section li { margin-bottom: 8px; padding-left: 4px; }
+  .guide-section { margin-bottom: 30px; }
+  .guide-section h3 { font-size: 28px; color: var(--text); font-weight: 700; margin-bottom: 14px; }
+  .guide-section li { margin-bottom: 10px; padding-left: 6px; }
 
   /* 설치 안내 배너 */
   .install-banner {
-    margin: 12px 16px 0;
+    margin: 14px 20px 0;
     background: linear-gradient(135deg, #0d2030, #0d1e16);
     border: 1px solid rgba(0,229,160,0.3);
-    border-radius: 12px;
-    padding: 16px;
+    border-radius: 14px;
+    padding: 18px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
   }
 
-  .install-banner-icon { font-size: 40px; flex-shrink: 0; }
+  .install-banner-icon { font-size: 44px; flex-shrink: 0; }
 
   .install-banner-text { flex: 1; }
-  .install-banner-text b { display: block; font-size: 22px; color: var(--text); margin-bottom: 4px; }
-  .install-banner-text span { font-size: 18px; color: var(--text-muted); line-height: 1.5; }
+  .install-banner-text b { display: block; font-size: 26px; color: var(--text); margin-bottom: 6px; }
+  .install-banner-text span { font-size: 22px; color: var(--text-muted); line-height: 1.6; }
 
   .btn-install-dismiss {
     background: none; border: none; color: var(--text-dim);
-    font-size: 28px; cursor: pointer; flex-shrink: 0;
+    font-size: 32px; cursor: pointer; flex-shrink: 0;
     padding: 4px;
   }
 
   /* 토스트 */
   .toast {
     position: fixed;
-    bottom: calc(70px + var(--safe-bottom) + 12px);
+    bottom: calc(80px + var(--safe-bottom) + 14px);
     left: 50%; transform: translateX(-50%) translateY(20px);
     background: var(--surface2);
     border: 1px solid var(--accent-buy);
-    border-radius: 12px;
-    padding: 12px 22px;
-    font-size: 20px;
+    border-radius: 14px;
+    padding: 14px 26px;
+    font-size: 24px;
     color: var(--text);
     z-index: 200;
     opacity: 0;
     transition: all 0.25s;
     white-space: nowrap;
-    max-width: calc(100vw - 32px);
+    max-width: calc(100vw - 40px);
     text-align: center;
   }
 
   .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
   /* dot pulse */
-  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-blue); display: inline-block; animation: pulse 1.5s infinite; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent-blue); display: inline-block; animation: pulse 1.5s infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.2} }
 
   /* collapse toggle */
   .collapse-btn {
     width: 100%; background: none; border: none; border-top: 1px solid var(--border);
-    color: var(--text-muted); font-size: 20px; font-family: 'Noto Sans KR', sans-serif;
-    padding: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;
+    color: var(--text-muted); font-size: 24px; font-family: 'Noto Sans KR', sans-serif;
+    padding: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
   }
   .collapse-btn:active { background: var(--surface2); }
+
+  /* 추가 매수 버튼 */
+  .btn-execute-buy {
+    width: 100%; 
+    padding: 16px; 
+    background: var(--accent-buy); 
+    color: #000; 
+    border: none; 
+    border-radius: 12px; 
+    font-size: 26px; 
+    font-weight: 700; 
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+
+  .btn-execute-buy:active { background: #00ffb3; }
 </style>
 </head>
 <body>
@@ -533,7 +575,7 @@
     </div>
 
     <!-- 종목 추가 폼 -->
-    <div class="add-panel" style="margin-top:12px">
+    <div class="add-panel" style="margin-top:14px">
       <div class="add-panel-title">+ 종목 추가</div>
       <div class="form-row">
         <div class="form-group" style="grid-column:1/-1">
@@ -559,7 +601,7 @@
       <div class="empty-state" id="empty-msg">
         <div class="empty-icon">📈</div>
         <div class="empty-title">종목을 추가하세요</div>
-        <div class="empty-desc">종목명, 진입가, 수량을 입력하면<br>그리드 매매 스케줄이 자동 생성됩니다</div>
+        <div class="empty-desc">종목명, 진입가, 수량을 입력하면<br>그리드 매매를 시작할 수 있습니다</div>
       </div>
     </div>
   </div>
@@ -569,36 +611,28 @@
     <div class="guide-content">
       <div class="guide-section">
         <h3>📌 매매 규칙</h3>
-        <ul style="padding-left:16px">
-          <li>총 투자금 <strong style="color:var(--text)">₩1,000,000</strong> 한도</li>
+        <ul style="padding-left:20px">
           <li>첫 진입: 지정 가격에 원하는 수량 매수</li>
-          <li>추가 매수: 첫 진입가 기준 <strong style="color:var(--accent-sell)">1% 하락마다</strong> ₩10,000어치</li>
-          <li>매도: 각 매수가 기준 <strong style="color:var(--accent-buy)">2% 상승 시</strong> 해당 수량만 매도</li>
+          <li>추가 매수: 첫 진입가 기준 <strong style="color:var(--accent-sell)">1% 하락마다 1만원어치</strong> 추가 매수 가능</li>
+          <li>예시: 10% 하락 시 10만원어치 추가 매수 가능</li>
+          <li>매도: 각 매수가 기준 <strong style="color:var(--accent-buy)">2% 상승 시</strong> 해당 수량 매도</li>
         </ul>
       </div>
       <div class="guide-section">
         <h3>🔄 사용 방법</h3>
-        <ul style="padding-left:16px">
+        <ul style="padding-left:20px">
           <li>종목명, 진입가, 수량 입력 후 "스케줄 생성"</li>
-          <li>현재가 입력 → 업데이트 → 🔔 강조 행 확인</li>
-          <li>매수·매도 체결 시 해당 버튼으로 완료 처리</li>
+          <li>현재가 입력 → 업데이트 → 추가 매수 가능 금액 안내</li>
+          <li>추가 매수 버튼 클릭 시 그 가격 기준 매도가로 기록</li>
           <li>최대 10개 종목 동시 관리 가능</li>
         </ul>
       </div>
       <div class="guide-section">
         <h3>🎨 색상 안내</h3>
-        <ul style="padding-left:16px">
-          <li><span style="color:var(--accent-buy)">● 녹색</span> — 현재가 기준 조건 충족 행</li>
+        <ul style="padding-left:20px">
+          <li><span style="color:var(--accent-buy)">● 녹색</span> — 추가 매수 가능 상황</li>
           <li><span style="color:var(--text-muted)">● 회색</span> — 완료 처리된 거래</li>
           <li><span style="color:var(--accent-blue)">● 파란색</span> — 대기 중 주문</li>
-        </ul>
-      </div>
-      <div class="guide-section">
-        <h3>📲 앱 설치 방법</h3>
-        <ul style="padding-left:16px">
-          <li><strong style="color:var(--text)">안드로이드 Chrome:</strong> 우상단 메뉴(⋮) → "홈 화면에 추가"</li>
-          <li><strong style="color:var(--text)">삼성 인터넷:</strong> 메뉴 → "페이지 추가" → "홈 화면"</li>
-          <li><strong style="color:var(--text)">iOS Safari:</strong> 하단 공유(□↑) → "홈 화면에 추가"</li>
         </ul>
       </div>
     </div>
@@ -626,11 +660,11 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js').catch(() => {});
 }
 
-let stocks = JSON.parse(localStorage.getItem('grid-stocks-v2') || '[]');
+let stocks = JSON.parse(localStorage.getItem('grid-stocks-v3') || '[]');
 let collapsedCards = JSON.parse(localStorage.getItem('grid-collapsed') || '[]');
 
 function save() {
-  localStorage.setItem('grid-stocks-v2', JSON.stringify(stocks));
+  localStorage.setItem('grid-stocks-v3', JSON.stringify(stocks));
   localStorage.setItem('grid-collapsed', JSON.stringify(collapsedCards));
 }
 
@@ -672,47 +706,20 @@ function addStock() {
   if (!qty || qty < 1) return toast('매수 수량을 입력해주세요', 'var(--accent-sell)');
   if (stocks.length >= 10) return toast('최대 10개까지 추가 가능합니다', 'var(--accent-sell)');
 
-  const budget = 1000000;
-  const unit = 10000;
-  let schedule = [];
-  let invested = price * qty;
-
-  schedule.push({
-    id: Date.now() + '_0', level: 0,
-    buyPrice: price, qty,
-    amount: price * qty,
-    sellPrice: Math.round(price * 1.02),
-    buyDone: false, sellDone: false,
-  });
-
-  let level = 1;
-  while (invested < budget && level <= 99) {
-    const dropPrice = Math.round(price * Math.pow(0.99, level));
-    const addQty = Math.max(1, Math.floor(unit / dropPrice));
-    const cost = dropPrice * addQty;
-    if (invested + cost > budget) break;
-    schedule.push({
-      id: Date.now() + '_' + level, level,
-      buyPrice: dropPrice, qty: addQty,
-      amount: cost,
-      sellPrice: Math.round(dropPrice * 1.02),
-      buyDone: false, sellDone: false,
-    });
-    invested += cost;
-    level++;
-  }
-
   stocks.push({
-    id: Date.now(), name,
-    entryPrice: price, entryQty: qty,
-    currentPrice: null, schedule,
+    id: Date.now(), 
+    name,
+    entryPrice: price, 
+    entryQty: qty,
+    currentPrice: null, 
+    executedSchedule: [], // 체결된 추가 매수 기록
   });
 
   save(); render();
   document.getElementById('inp-name').value = '';
   document.getElementById('inp-price').value = '';
   document.getElementById('inp-qty').value = '';
-  toast(`${name} 추가 완료 (${schedule.length}단계)`);
+  toast(`${name} 추가 완료 (첫 진입: ${qty}주)`);
 }
 
 function removeStock(id) {
@@ -727,23 +734,41 @@ function updatePrice(id) {
   const val = parseFloat(document.getElementById('pi-' + id).value);
   if (!val || val <= 0) return toast('현재가를 입력해주세요', 'var(--accent-sell)');
   s.currentPrice = val;
-  s.schedule.forEach(r => { if (!r.buyDone && val <= r.buyPrice) r.buyDone = true; });
   save(); render();
   toast(`${s.name} 현재가 ₩${fmt(val)}`);
 }
 
-function toggleBuy(sid, rid) {
-  const s = stocks.find(x => x.id === sid);
-  const r = s.schedule.find(x => x.id === rid);
-  r.buyDone = !r.buyDone;
+function executeBuy(id, dropPercentage) {
+  const s = stocks.find(x => x.id === id);
+  const cur = s.currentPrice;
+  
+  // 추가 매수 금액: dropPercentage * 1만원
+  const buyAmount = dropPercentage * 10000;
+  const qty = Math.max(1, Math.round(buyAmount / cur));
+  const sellPrice = Math.round(cur * 1.02);
+  
+  // 체결 기록에 추가
+  s.executedSchedule.push({
+    id: Date.now(),
+    dropPercent: dropPercentage,
+    buyPrice: cur,
+    qty: qty,
+    buyAmount: buyAmount,
+    sellPrice: sellPrice,
+    sellDone: false,
+  });
+  
   save(); render();
+  toast(`${dropPercentage}% 추가 매수 ${qty}주 체결 (${sellPrice}원에 매도)`);
 }
 
-function toggleSell(sid, rid) {
-  const s = stocks.find(x => x.id === sid);
-  const r = s.schedule.find(x => x.id === rid);
-  r.sellDone = !r.sellDone;
-  save(); render();
+function toggleSellDone(id, scheduleId) {
+  const s = stocks.find(x => x.id === id);
+  const sched = s.executedSchedule.find(x => x.id === scheduleId);
+  if (sched) {
+    sched.sellDone = !sched.sellDone;
+    save(); render();
+  }
 }
 
 function toggleCollapse(id) {
@@ -771,24 +796,104 @@ function render() {
 
 function renderCard(s, num) {
   const cur = s.currentPrice;
-  const bought = s.schedule.filter(r => r.buyDone);
-  const totalAmt = bought.reduce((a, r) => a + r.amount, 0);
-  const totalQty = bought.reduce((a, r) => a + r.qty, 0);
-  const soldQty = s.schedule.filter(r => r.sellDone).reduce((a, r) => a + r.qty, 0);
-  const soldAmt = s.schedule.filter(r => r.sellDone).reduce((a, r) => a + r.qty * r.sellPrice, 0);
+  const dropPercent = cur ? Math.round(((s.entryPrice - cur) / s.entryPrice) * 100) : 0;
+  const maxBuyAmount = dropPercent > 0 ? dropPercent * 10000 : 0;
+  
+  // 이미 체결된 추가 매수들
+  const executedTotal = s.executedSchedule.reduce((a, x) => a + x.buyAmount, 0);
+  const executedQty = s.executedSchedule.reduce((a, x) => a + x.qty, 0);
+  const soldQty = s.executedSchedule.filter(x => x.sellDone).reduce((a, x) => a + x.qty, 0);
+  
   const collapsed = collapsedCards.includes(s.id);
 
   const card = document.createElement('div');
   card.className = 'stock-card';
 
-  // 헤더
+  // 변동률
   const changeStr = cur
     ? (cur < s.entryPrice
-        ? `▼${((1 - cur / s.entryPrice) * 100).toFixed(1)}%`
+        ? `▼${dropPercent}%`
         : cur > s.entryPrice
           ? `▲${((cur / s.entryPrice - 1) * 100).toFixed(1)}%`
           : '±0%')
     : '';
+
+  let mainContent = '';
+
+  // 현재가 입력 후 동적 스케줄 생성
+  if (cur && dropPercent > 0) {
+    const buyBudget = maxBuyAmount - executedTotal;
+    const buyQtyAvailable = cur > 0 ? Math.max(1, Math.round(buyBudget / cur)) : 0;
+    
+    mainContent = `
+      <div class="dynamic-schedule-info">
+        <div class="info-title">🔔 추가 매수 가능</div>
+        <div class="info-desc">
+          진입가 대비 <strong>${dropPercent}% 하락</strong><br>
+          <strong>₩${fmt(buyBudget)}</strong>어치 추가 매수 가능<br>
+          현재가 <strong>₩${fmt(cur)}</strong>에서 약 <strong>${buyQtyAvailable}주</strong> 매수 가능
+        </div>
+      </div>
+      ${buyBudget > 0 ? `
+        <div style="padding: 14px 16px; background: #0d1420; border-bottom: 1px solid var(--border);">
+          <button onclick="executeBuy(${s.id}, ${dropPercent})" class="btn-execute-buy">
+            ✓ ${dropPercent}% 추가 매수 실행 (${buyQtyAvailable}주)
+          </button>
+        </div>
+      ` : ''}
+      
+      ${s.executedSchedule.length > 0 ? `
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>하락률</th>
+                <th>매수가</th>
+                <th>수량</th>
+                <th>금액</th>
+                <th>매도가</th>
+                <th>처리</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${s.executedSchedule.map(r => `
+                <tr ${r.sellDone ? 'class="row-done"' : ''}>
+                  <td style="color:var(--text-muted)">-${r.dropPercent}%</td>
+                  <td style="color:var(--accent-sell)">₩${fmt(r.buyPrice)}</td>
+                  <td>${r.qty}주</td>
+                  <td>₩${fmt(r.buyAmount)}</td>
+                  <td style="color:var(--accent-buy)">₩${fmt(r.sellPrice)}</td>
+                  <td>
+                    <div class="action-btns">
+                      ${r.sellDone ? `
+                        <button class="btn-action btn-undo" onclick="toggleSellDone(${s.id}, ${r.id})">↩</button>
+                      ` : `
+                        <button class="btn-action btn-do-sell" onclick="toggleSellDone(${s.id}, ${r.id})">매도✓</button>
+                      `}
+                    </div>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      ` : ''}
+    `;
+  } else if (!cur) {
+    mainContent = `
+      <div class="dynamic-schedule-info">
+        <div class="info-title">💡 현재가 입력 필요</div>
+        <div class="info-desc">현재가를 입력하면 추가 매수 가능 금액이 표시됩니다</div>
+      </div>
+    `;
+  } else {
+    mainContent = `
+      <div class="dynamic-schedule-info">
+        <div class="info-title">✓ 진입가보다 높음</div>
+        <div class="info-desc">현재가가 진입가보다 높아 추가 매수 대상이 아닙니다</div>
+      </div>
+    `;
+  }
 
   card.innerHTML = `
     <div class="card-head">
@@ -798,7 +903,7 @@ function renderCard(s, num) {
         ${cur ? `<span class="cur-price-chip"><span class="dot"></span> ₩${fmt(cur)} <span style="color:${cur < s.entryPrice ? 'var(--accent-sell)' : 'var(--accent-buy)'}">${changeStr}</span></span>` : ''}
       </div>
       <div class="card-head-right">
-        <div class="entry-info">진입 ₩${fmt(s.entryPrice)} · ${s.schedule.length}단계</div>
+        <div class="entry-info">첫진입 ₩${fmt(s.entryPrice)} · ${s.entryQty}주</div>
         <button class="btn-delete" onclick="removeStock(${s.id})">삭제</button>
       </div>
     </div>
@@ -810,87 +915,29 @@ function renderCard(s, num) {
       <button class="btn-update" onclick="updatePrice(${s.id})">업데이트</button>
     </div>
 
-    ${!collapsed ? `
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>단계</th>
-            <th>매수가</th>
-            <th>수량</th>
-            <th>투자금</th>
-            <th>매도가</th>
-            <th>매수</th>
-            <th>매도</th>
-            <th style="text-align:right">처리</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${s.schedule.map(r => {
-            const isBuyTrig = cur && !r.buyDone && cur <= r.buyPrice;
-            const isSellTrig = cur && r.buyDone && !r.sellDone && cur >= r.sellPrice;
-            let rowCls = r.sellDone ? 'row-done' : (isBuyTrig || isSellTrig ? 'row-triggered' : '');
-            const buySt = r.sellDone
-              ? `<span class="badge b-done">매수✓</span>`
-              : r.buyDone
-                ? `<span class="badge b-done">완료</span>`
-                : isBuyTrig
-                  ? `<span class="badge b-alert">🔔</span>`
-                  : `<span class="badge b-wait">대기</span>`;
-            const sellSt = r.sellDone
-              ? `<span class="badge b-done">매도✓</span>`
-              : r.buyDone
-                ? isSellTrig
-                  ? `<span class="badge b-alert">🔔</span>`
-                  : `<span class="badge b-sell">대기</span>`
-                : `<span class="badge b-wait">—</span>`;
-            const actions = r.sellDone
-              ? `<button class="btn-action btn-undo" onclick="toggleSell(${s.id},'${r.id}')">↩</button>`
-              : r.buyDone
-                ? `<button class="btn-action btn-do-sell" onclick="toggleSell(${s.id},'${r.id}')">매도✓</button>
-                   <button class="btn-action btn-undo" onclick="toggleBuy(${s.id},'${r.id}')">↩</button>`
-                : `<button class="btn-action btn-do-buy" onclick="toggleBuy(${s.id},'${r.id}')">매수✓</button>`;
-            return `<tr class="${rowCls}">
-              <td style="color:var(--text-muted)">${r.level === 0 ? '진입' : `-${r.level}%`}</td>
-              <td style="color:var(--accent-sell)">₩${fmt(r.buyPrice)}</td>
-              <td>${r.qty}주</td>
-              <td>₩${fmt(r.amount)}</td>
-              <td style="color:var(--accent-buy)">₩${fmt(r.sellPrice)}</td>
-              <td>${buySt}</td>
-              <td>${sellSt}</td>
-              <td><div class="action-btns">${actions}</div></td>
-            </tr>`;
-          }).join('')}
-        </tbody>
-      </table>
-    </div>
-    ` : ''}
-
-    <button class="collapse-btn" onclick="toggleCollapse(${s.id})">
-      ${collapsed ? '▼ 스케줄 펼치기' : '▲ 스케줄 접기'}
-    </button>
+    ${mainContent}
 
     <div class="card-summary">
       <div class="sum-item">
-        <span class="sum-label">투자 중</span>
-        <span class="sum-val v-buy">₩${fmt(totalAmt)}</span>
+        <span class="sum-label">첫진입</span>
+        <span class="sum-val v-buy">${s.entryQty}주</span>
+      </div>
+      <div class="sum-item">
+        <span class="sum-label">추가매수</span>
+        <span class="sum-val v-neu">${executedQty}주</span>
       </div>
       <div class="sum-item">
         <span class="sum-label">보유</span>
-        <span class="sum-val v-neu">${totalQty}주</span>
-      </div>
-      <div class="sum-item">
-        <span class="sum-label">잔여예산</span>
-        <span class="sum-val v-warn">₩${fmt(1000000 - totalAmt)}</span>
+        <span class="sum-val v-neu">${s.entryQty + executedQty}주</span>
       </div>
       <div class="sum-item">
         <span class="sum-label">매도완료</span>
         <span class="sum-val v-sell">${soldQty}주</span>
       </div>
-      ${cur && totalQty > 0 ? `
+      ${cur && (s.entryQty + executedQty) > 0 ? `
       <div class="sum-item">
         <span class="sum-label">평가금액</span>
-        <span class="sum-val" style="color:${cur * totalQty >= totalAmt ? 'var(--accent-buy)' : 'var(--accent-sell)'}">₩${fmt(cur * totalQty)}</span>
+        <span class="sum-val" style="color:${cur * (s.entryQty + executedQty) >= (s.entryPrice * s.entryQty + executedTotal) ? 'var(--accent-buy)' : 'var(--accent-sell)'}">₩${fmt(cur * (s.entryQty + executedQty))}</span>
       </div>` : ''}
     </div>
   `;
