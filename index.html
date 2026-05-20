@@ -338,7 +338,7 @@
     border-collapse: collapse;
     font-size: 24px;
     font-family: 'JetBrains Mono', monospace;
-    min-width: 800px;
+    min-width: 900px;
   }
 
   thead th {
@@ -369,9 +369,6 @@
   .row-done { opacity: 0.4; }
   .row-done td { text-decoration: line-through; color: var(--text-muted) !important; }
 
-  .row-triggered { background: #0d1e16 !important; }
-  .row-triggered td { color: var(--accent-buy) !important; text-decoration: none !important; opacity: 1 !important; }
-
   /* 뱃지 */
   .badge {
     display: inline-flex; align-items: center;
@@ -388,7 +385,7 @@
   .b-alert { background: rgba(0,229,160,0.2); color: var(--accent-buy); border: 1px solid rgba(0,229,160,0.4); }
 
   /* 체결 버튼 */
-  .action-btns { display: flex; gap: 6px; justify-content: flex-end; }
+  .action-btns { display: flex; gap: 6px; justify-content: flex-end; align-items: center; }
 
   .btn-action {
     border: none; border-radius: 8px;
@@ -397,12 +394,25 @@
     cursor: pointer;
   }
 
-  .btn-do-buy { background: rgba(0,229,160,0.15); color: var(--accent-buy); border: 1px solid rgba(0,229,160,0.3); }
   .btn-do-sell { background: rgba(255,77,109,0.15); color: var(--accent-sell); border: 1px solid rgba(255,77,109,0.3); }
   .btn-undo { background: rgba(107,122,153,0.1); color: var(--text-muted); border: 1px solid var(--border); }
 
-  .btn-do-buy:active { background: var(--accent-buy); color: #000; }
   .btn-do-sell:active { background: var(--accent-sell); color: #fff; }
+
+  .sell-price-input {
+    width: 110px;
+    background: var(--bg);
+    border: 1px solid var(--accent-sell);
+    border-radius: 6px;
+    padding: 6px 8px;
+    color: var(--text);
+    font-size: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    outline: none;
+    -webkit-appearance: none;
+  }
+
+  .sell-price-input:focus { border-color: var(--accent-buy); }
 
   /* 요약 바 */
   .card-summary {
@@ -521,14 +531,6 @@
   .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent-blue); display: inline-block; animation: pulse 1.5s infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.2} }
 
-  /* collapse toggle */
-  .collapse-btn {
-    width: 100%; background: none; border: none; border-top: 1px solid var(--border);
-    color: var(--text-muted); font-size: 24px; font-family: 'Noto Sans KR', sans-serif;
-    padding: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
-  }
-  .collapse-btn:active { background: var(--surface2); }
-
   /* 추가 매수 버튼 */
   .btn-execute-buy {
     width: 100%; 
@@ -615,7 +617,7 @@
           <li>첫 진입: 지정 가격에 원하는 수량 매수</li>
           <li>추가 매수: 첫 진입가 기준 <strong style="color:var(--accent-sell)">1% 하락마다 1만원어치</strong> 추가 매수 가능</li>
           <li>예시: 10% 하락 시 10만원어치 추가 매수 가능</li>
-          <li>매도: 각 매수가 기준 <strong style="color:var(--accent-buy)">2% 상승 시</strong> 해당 수량 매도</li>
+          <li>매도: 각 매수 행의 매도가 입력 후 매도 버튼 클릭</li>
         </ul>
       </div>
       <div class="guide-section">
@@ -623,7 +625,8 @@
         <ul style="padding-left:20px">
           <li>종목명, 진입가, 수량 입력 후 "스케줄 생성"</li>
           <li>현재가 입력 → 업데이트 → 추가 매수 가능 금액 안내</li>
-          <li>추가 매수 버튼 클릭 시 그 가격 기준 매도가로 기록</li>
+          <li>추가 매수 버튼 클릭 → 기록 행 생성</li>
+          <li>각 행에서 매도가 입력 후 매도 버튼 클릭</li>
           <li>최대 10개 종목 동시 관리 가능</li>
         </ul>
       </div>
@@ -631,7 +634,7 @@
         <h3>🎨 색상 안내</h3>
         <ul style="padding-left:20px">
           <li><span style="color:var(--accent-buy)">● 녹색</span> — 추가 매수 가능 상황</li>
-          <li><span style="color:var(--text-muted)">● 회색</span> — 완료 처리된 거래</li>
+          <li><span style="color:var(--text-muted)">● 회색</span> — 매도 완료된 거래</li>
           <li><span style="color:var(--accent-blue)">● 파란색</span> — 대기 중 주문</li>
         </ul>
       </div>
@@ -660,11 +663,11 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('./sw.js').catch(() => {});
 }
 
-let stocks = JSON.parse(localStorage.getItem('grid-stocks-v3') || '[]');
+let stocks = JSON.parse(localStorage.getItem('grid-stocks-v4') || '[]');
 let collapsedCards = JSON.parse(localStorage.getItem('grid-collapsed') || '[]');
 
 function save() {
-  localStorage.setItem('grid-stocks-v3', JSON.stringify(stocks));
+  localStorage.setItem('grid-stocks-v4', JSON.stringify(stocks));
   localStorage.setItem('grid-collapsed', JSON.stringify(collapsedCards));
 }
 
@@ -745,7 +748,6 @@ function executeBuy(id, dropPercentage) {
   // 추가 매수 금액: dropPercentage * 1만원
   const buyAmount = dropPercentage * 10000;
   const qty = Math.max(1, Math.round(buyAmount / cur));
-  const sellPrice = Math.round(cur * 1.02);
   
   // 체결 기록에 추가
   s.executedSchedule.push({
@@ -754,21 +756,58 @@ function executeBuy(id, dropPercentage) {
     buyPrice: cur,
     qty: qty,
     buyAmount: buyAmount,
-    sellPrice: sellPrice,
-    sellDone: false,
+    sellPrice: 0, // 매도가 미정
+    isSelling: false, // 매도 모드 활성화
   });
   
   save(); render();
-  toast(`${dropPercentage}% 추가 매수 ${qty}주 체결`);
+  toast(`${dropPercentage}% 추가 매수 ${qty}주 기록됨`);
 }
 
-function toggleSellDone(id, scheduleId) {
+function toggleSellMode(id, scheduleId) {
   const s = stocks.find(x => x.id === id);
   const sched = s.executedSchedule.find(x => x.id === scheduleId);
   if (sched) {
-    sched.sellDone = !sched.sellDone;
-    save(); render();
+    sched.isSelling = !sched.isSelling;
+    if (!sched.isSelling && sched.sellPrice === 0) {
+      // 매도 완료하지 않고 취소
+      save(); render();
+      return;
+    }
+    if (sched.isSelling) {
+      save(); render();
+      // 입력 포커스
+      setTimeout(() => {
+        const input = document.getElementById(`sell-price-${id}-${scheduleId}`);
+        if (input) input.focus();
+      }, 100);
+    }
   }
+}
+
+function confirmSell(id, scheduleId) {
+  const s = stocks.find(x => x.id === id);
+  const sched = s.executedSchedule.find(x => x.id === scheduleId);
+  if (!sched) return;
+  
+  const sellPrice = parseFloat(document.getElementById(`sell-price-${id}-${scheduleId}`).value);
+  if (!sellPrice || sellPrice <= 0) {
+    return toast('매도가를 입력해주세요', 'var(--accent-sell)');
+  }
+  
+  sched.sellPrice = sellPrice;
+  sched.isSelling = false;
+  
+  save(); render();
+  const profit = ((sellPrice - sched.buyPrice) * sched.qty);
+  toast(`매도 완료: ${sched.qty}주 @ ₩${fmt(sellPrice)} (수익 ₩${fmt(profit)})`);
+}
+
+function undoSell(id, scheduleId) {
+  const s = stocks.find(x => x.id === id);
+  s.executedSchedule = s.executedSchedule.filter(x => x.id !== scheduleId);
+  save(); render();
+  toast('매수 기록 취소');
 }
 
 function toggleCollapse(id) {
@@ -785,23 +824,34 @@ function calculateStats(s) {
   // 첫진입 투자금액
   const initialInvest = s.entryPrice * s.entryQty;
   
-  // 추가매수 총투자금액
-  const additionalInvest = s.executedSchedule.reduce((sum, r) => sum + (r.buyPrice * r.qty), 0);
+  // 추가매수 총투자금액 (매도 미완료만)
+  const additionalInvest = s.executedSchedule
+    .filter(r => r.sellPrice === 0)
+    .reduce((sum, r) => sum + (r.buyPrice * r.qty), 0);
   
-  // 총 투자금액
+  // 총 투자금액 (현재 보유 기반)
   const totalInvest = initialInvest + additionalInvest;
   
-  // 총 누적 수량
-  const totalQty = s.entryQty + s.executedSchedule.reduce((sum, r) => sum + r.qty, 0);
+  // 총 누적 수량 (매도 미완료만)
+  const totalQty = s.entryQty + s.executedSchedule
+    .filter(r => r.sellPrice === 0)
+    .reduce((sum, r) => sum + r.qty, 0);
   
   // 평균단가
   const avgPrice = totalQty > 0 ? totalInvest / totalQty : 0;
   
   // 매도 완료된 수량
-  const soldQty = s.executedSchedule.filter(r => r.sellDone).reduce((sum, r) => sum + r.qty, 0);
+  const soldQty = s.executedSchedule
+    .filter(r => r.sellPrice > 0)
+    .reduce((sum, r) => sum + r.qty, 0);
   
   // 보유 수량
-  const holdingQty = totalQty - soldQty;
+  const holdingQty = totalQty;
+  
+  // 총 매도 수익
+  const totalSellProfit = s.executedSchedule
+    .filter(r => r.sellPrice > 0)
+    .reduce((sum, r) => sum + ((r.sellPrice - r.buyPrice) * r.qty), 0);
   
   return {
     totalInvest,
@@ -810,7 +860,8 @@ function calculateStats(s) {
     soldQty,
     holdingQty,
     initialInvest,
-    additionalInvest
+    additionalInvest,
+    totalSellProfit
   };
 }
 
@@ -834,8 +885,9 @@ function renderCard(s, num) {
   const maxBuyAmount = dropPercent > 0 ? dropPercent * 10000 : 0;
   
   // 이미 체결된 추가 매수들
-  const executedTotal = s.executedSchedule.reduce((a, x) => a + (x.buyPrice * x.qty), 0);
-  const executedQty = s.executedSchedule.reduce((a, x) => a + x.qty, 0);
+  const executedTotal = s.executedSchedule
+    .filter(r => r.sellPrice === 0)
+    .reduce((a, x) => a + (x.buyPrice * x.qty), 0);
   
   // 통계 계산
   const stats = calculateStats(s);
@@ -858,7 +910,9 @@ function renderCard(s, num) {
 
   // 현재가 입력 후 동적 스케줄 생성
   if (cur && dropPercent > 0) {
-    const buyBudget = maxBuyAmount - (s.executedSchedule.reduce((a, x) => a + (x.buyPrice * x.qty), 0) - s.entryPrice * s.entryQty);
+    const buyBudget = maxBuyAmount - (s.executedSchedule
+      .filter(r => r.sellPrice === 0)
+      .reduce((a, x) => a + (x.buyPrice * x.qty), 0) - s.entryPrice * s.entryQty);
     const buyQtyAvailable = cur > 0 ? Math.max(1, Math.round(buyBudget / cur)) : 0;
     
     mainContent = `
@@ -893,19 +947,26 @@ function renderCard(s, num) {
             </thead>
             <tbody>
               ${s.executedSchedule.map(r => `
-                <tr ${r.sellDone ? 'class="row-done"' : ''}>
+                <tr ${r.sellPrice > 0 ? 'class="row-done"' : ''}>
                   <td style="color:var(--text-muted)">-${r.dropPercent}%</td>
                   <td style="color:var(--accent-sell)">₩${fmt(r.buyPrice)}</td>
                   <td>${r.qty}주</td>
                   <td>₩${fmt(r.buyPrice * r.qty)}</td>
-                  <td style="color:var(--accent-buy)">₩${fmt(r.sellPrice)}</td>
+                  <td>
+                    ${r.isSelling ? `
+                      <input type="number" id="sell-price-${s.id}-${r.id}" class="sell-price-input" placeholder="매도가" inputmode="numeric" />
+                    ` : (r.sellPrice > 0 ? `<span style="color:var(--accent-buy)">₩${fmt(r.sellPrice)}</span>` : '-')}
+                  </td>
                   <td>
                     <div class="action-btns">
-                      ${r.sellDone ? `
-                        <button class="btn-action btn-undo" onclick="toggleSellDone(${s.id}, ${r.id})">↩</button>
+                      ${r.isSelling ? `
+                        <button class="btn-action btn-do-sell" onclick="confirmSell(${s.id}, ${r.id})">확정</button>
+                        <button class="btn-action btn-undo" onclick="toggleSellMode(${s.id}, ${r.id})">취소</button>
+                      ` : (r.sellPrice > 0 ? `
+                        <button class="btn-action btn-undo" onclick="undoSell(${s.id}, ${r.id})">↩ 취소</button>
                       ` : `
-                        <button class="btn-action btn-do-sell" onclick="toggleSellDone(${s.id}, ${r.id})">매도✓</button>
-                      `}
+                        <button class="btn-action btn-do-sell" onclick="toggleSellMode(${s.id}, ${r.id})">매도</button>
+                      `)}
                     </div>
                   </td>
                 </tr>
@@ -959,21 +1020,22 @@ function renderCard(s, num) {
         <span class="sum-val v-buy">₩${fmt(stats.avgPrice)}</span>
       </div>
       <div class="sum-item">
-        <span class="sum-label">총 수량</span>
-        <span class="sum-val v-neu">${stats.totalQty}주</span>
+        <span class="sum-label">총 보유</span>
+        <span class="sum-val v-neu">${stats.holdingQty}주</span>
       </div>
       <div class="sum-item">
         <span class="sum-label">총 투입금액</span>
         <span class="sum-val v-neu">₩${fmt(stats.totalInvest)}</span>
       </div>
       <div class="sum-item">
-        <span class="sum-label">보유</span>
-        <span class="sum-val v-neu">${stats.holdingQty}주</span>
-      </div>
-      <div class="sum-item">
         <span class="sum-label">매도완료</span>
         <span class="sum-val v-sell">${stats.soldQty}주</span>
       </div>
+      ${stats.totalSellProfit !== 0 ? `
+      <div class="sum-item">
+        <span class="sum-label">수익</span>
+        <span class="sum-val" style="color:${stats.totalSellProfit > 0 ? 'var(--accent-buy)' : 'var(--accent-sell)'}">₩${fmt(stats.totalSellProfit)}</span>
+      </div>` : ''}
       ${cur && stats.totalQty > 0 ? `
       <div class="sum-item">
         <span class="sum-label">평가금액</span>
